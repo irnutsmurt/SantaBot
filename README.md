@@ -12,13 +12,19 @@ A Discord bot to organize secret santa gift exchanges using the discord.py Pytho
 ### Steps to run:
 1. Run `pip3 install -r requirements.txt`
 2. Once all of the dependencies are installed, create a Discord bot token following the instructions [here](https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token).
-3. Replace variables in CONFIG.py
-  3a.  Replace `discord_token` and `client_id` in CONFIG.py with your bot token - these two are REQUIRED for all functionality and for the bot to even start
-  3b. Replace other variables as you want
-      - `role_channel` is REQUIRED for using reaction roles - but will throw an error if unassigned
-      - `bot_folder` this is where the .cfg for the Secret Santa participants, the debug log, and the SQLite database files are stored
-      - `prefix` change it to whatever you want otherwise commands default to YOUR_PREFIX_HEREjoin, YOUR_PREFIX_HEREunpin_all, etc.
-      - `cfg_name`, `dbg_name`, `sqlite_name` don't *need* to do anything here unless you want to
+3. Replace variables in CONFIG.py (I have provided CONFIG.py.example as an example)
+
+   3a. Replace `discord_token` and `client_id` in CONFIG.py with your bot token - these two are REQUIRED for all functionality and for the bot to even start
+   
+   3b. Replace other variables as you want
+   
+       - `role_channel` is REQUIRED for using reaction roles - but will throw an error if unassigned
+       
+       - `bot_folder` this is where the .cfg for the Secret Santa participants, the debug log, and the SQLite database files are stored
+       
+       - `prefix` change it to whatever you want otherwise commands default to YOUR_PREFIX_HEREjoin, YOUR_PREFIX_HEREunpin_all, etc.
+       
+       - `cfg_name`, `dbg_name`, `sqlite_name` don't *need* to do anything here unless you want to
 4. Run `python3 santa-bot.py`
 
 #### Secret Santa Commands:
@@ -38,9 +44,13 @@ A Discord bot to organize secret santa gift exchanges using the discord.py Pytho
 - `s!end` **(admin only)** = end Secret Santa
 
 #### Administrative Commands:
-- `s!assign_role_channel CHANNEL_ID` **(admin only)** = change the channel the bot looks at for reaction roles
-- `s!archive pins SRC_CHANNEL_ID DEST_CHANNEL_ID` **(admin only)** = archive all pins from the source channel to the destination channel as messages
+- `s!assign_role_channel CHANNEL` **(admin only)** = change the channel the bot looks at for reaction roles
+- `s!archive pins SRC_CHANNEL DEST_CHANNEL` **(admin only)** = archive all pins from the source channel to the destination channel as messages
 - `s!unpin_all [CHANNEL_ID]` **(admin only)** = unpin all messages in the indicated channel (defaults to the channel the command is called in)
+
+#### Utility Commands:
+- `s!emote [any number of emotes]` = returns the URL of the emote image/gif for convenience
+- `s![countdown|cd]` = set/check a countdown (global for the server, e.g. time until a Manga Club event) - help text is returns as needed
 
 #### Miscellaneous Commands:
 

@@ -17,10 +17,10 @@ def start_santa_bot():
     config = None
     try:
         config = ConfigObj(CONFIG.cfg_path, file_error = True)
-    except: 
+    except Exception as e:
         try:
             os.mkdir(CONFIG.bot_folder)
-        except:
+        except Exception as e:
             pass
         config = ConfigObj()
         config.filename = CONFIG.cfg_path
