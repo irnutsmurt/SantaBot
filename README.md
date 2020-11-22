@@ -27,6 +27,43 @@ A Discord bot to organize secret santa gift exchanges using the discord.py Pytho
        - `cfg_name`, `dbg_name`, `sqlite_name` don't *need* to do anything here unless you want to
 4. Run `python3 santa-bot.py`
 
+#### Steps to install as a Service to keep running after reboot
+To keep SantaBot running even after restart you can create a service. This works with Ubuntu, Raspberry Pi OS, or Armbian
+
+1. Copy the run_santa.sh to /usr/local/bin/ directory
+
+- sudo cp run_santa.sh /usr/local/bin/
+
+2. Create a service file using your favorite text editor and add the default user name to User= and the Group they belong to in Group=. To find out what group a user belongs "id -gn usernamehere" 
+
+- sudo nano /lib/systemd/system/santabot.service
+
+		- [Unit]
+		- Description=Santa Discord Bot
+
+		- [Service]
+		- User= root
+		- Group= root
+		- Restart=on-abort
+		- WorkingDirectory= "Full Path to Santa Bot Here"
+		- ExecStart= /usr/local/bin/run_santa.sh
+
+		- [Install]
+		- WantedBy=multi-user.target
+
+3. When you save the file, you will enable it, then start it.
+
+- sudo systemctl enable santabot.service
+- sudo systemctl start santabot.service
+
+4. Then check the status
+
+- sudo systemctl status santabot.service
+
+5. When done using the bot for the season, disable using
+
+- sudo systemctl disable santabot.service
+
 #### Secret Santa Commands:
 
 - `s!join` = join the Secret Santa
@@ -57,3 +94,4 @@ A Discord bot to organize secret santa gift exchanges using the discord.py Pytho
 - `s!ping` = check if bot is alive
 - `s!echo` = make the bot say stuff
 - `s!ding` = dong
+
